@@ -8,10 +8,13 @@
 		"@saas/tsconfig": "workspace:*"
 	},
 	"eslintConfig": {
-		"extends": ["@saas/eslint-config/base.js"]
+		"extends": [
+			"@saas/eslint-config/base.js"
+		]
 	},
 	"prettier": "@saas/prettier",
 	"dependencies": {
-		"@casl/ability": "^6.7.3"
+		"@casl/ability": "^6.7.3",
+		"zod": "^3.24.2"
 	}
 }
