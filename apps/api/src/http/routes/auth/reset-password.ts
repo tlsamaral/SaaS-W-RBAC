@@ -3,9 +3,9 @@ import bcrypt from 'bcryptjs'
 import type { FastifyInstance } from 'fastify'
 import type { ZodTypeProvider } from 'fastify-type-provider-zod'
 import z from 'zod'
+import { auth } from '../../middlewares/auth'
 import { BadRequestError } from '../_erros/bad-request-error'
 import { UnauthorizedError } from '../_erros/unauthorized-error'
-import { auth } from '../middlewares/auth'
 
 export async function resetPassword(app: FastifyInstance) {
 	app
