@@ -7,5 +7,5 @@
 		"./library.json": "./library.json",
 		"./node.json": "./node.json"
 	},
-	"files": ["library.json", "node.json"]
+	"files": ["library.json", "node.json", "nextjs.json"]
 }
