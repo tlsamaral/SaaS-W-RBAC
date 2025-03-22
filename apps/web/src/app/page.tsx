@@ -1,5 +1,7 @@
-import Image from 'next/image'
+import { auth } from '@/auth/auth'
 
-export default function Home() {
-	return <h1>Hello world</h1>
+export default async function Home() {
+  const { user } = await auth()
+
+  return <pre>{JSON.stringify(user, null, 2)}</pre>
 }
