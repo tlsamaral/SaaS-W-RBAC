@@ -26,7 +26,7 @@ export default function SignInPage() {
 			</div>
 
 			<div className="space-y-1">
-				<Label htmlFor="password_confirmation">Confirme Password</Label>
+				<Label htmlFor="password_confirmation">Confirme your password</Label>
 				<Input
 					name="password_confirmation"
 					type="password"
