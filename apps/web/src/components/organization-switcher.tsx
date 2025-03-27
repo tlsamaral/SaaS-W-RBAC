@@ -11,13 +11,35 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 import Link from 'next/link'
 import { getOrganizations } from '@/http/get-organizations'
+import { cookies } from 'next/headers'
 
 export async function OrganizationSwicther() {
+  const currentOrg = (await cookies()).get('org')?.value
   const { organizations } = await getOrganizations()
+
+  const currentorganization = organizations.find(
+    (organization) => organization.slug === currentOrg,
+  )
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="flex w-[168px] items-center gap-2 rounded p-1 text-sm font-medium outline-none focus-visible:ring-2 focus-visible:ring-primary">
-        <span className="text-muted-foreground">Select organization</span>
+        {currentorganization ? (
+          <>
+            <Avatar className="mr-2 size-4">
+              {currentorganization.avatarUrl && (
+                <AvatarImage src={currentorganization.avatarUrl} />
+              )}
+              <AvatarFallback />
+            </Avatar>
+            <span className="truncate text-left">
+              {currentorganization.name}
+            </span>
+          </>
+        ) : (
+          <span className="text-muted-foreground">Select organization</span>
+        )}
+
         <ChevronsUpDown className="ml-auto size-4 text-muted-foreground" />
       </DropdownMenuTrigger>
 
@@ -32,7 +54,7 @@ export async function OrganizationSwicther() {
           {organizations.map((organization) => {
             return (
               <DropdownMenuItem key={organization.id} asChild>
-                <Link href={`/organizations/${organization.slug}`}>
+                <Link href={`/org/${organization.slug}`}>
                   <Avatar className="mr-2 size-4">
                     {organization.avatarUrl && (
                       <AvatarImage src={organization.avatarUrl} />
@@ -47,7 +69,7 @@ export async function OrganizationSwicther() {
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
-          <Link href="/organizations/new">
+          <Link href="/org/new">
             <PlusCircle className="size-4 mr-2" />
             New organization
           </Link>
