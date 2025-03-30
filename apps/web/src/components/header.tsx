@@ -8,19 +8,15 @@ import { Separator } from './ui/separator'
 export async function Header() {
   const permissions = await ability()
 
-  if (!permissions) {
-    return null
-  }
-
   return (
-    <div className="mx-auto flex max-w-[1200px] items-center justify-between">
+    <div className="mx-auto flex max-w-[1200px] items-center justify-between border-b pb-2 mb-2">
       <div className="flex items-center gap-3">
         <Code className="size-6" />
         <Slash className="size-3 -rotate-24 text-border" />
 
         <OrganizationSwicther />
 
-        {permissions.can('get', 'Project') && <p>Projects</p>}
+        {permissions?.can('get', 'Project') && <p>Projects</p>}
       </div>
 
       <div className="flex items-center gap-4">
