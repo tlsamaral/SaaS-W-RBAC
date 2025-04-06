@@ -69,7 +69,7 @@ export async function OrganizationSwicther() {
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
-          <Link href="/org/new">
+          <Link href="/org/create-organization">
             <PlusCircle className="size-4 mr-2" />
             New organization
           </Link>
