@@ -12,6 +12,7 @@ import { AlertTriangle, Loader2 } from 'lucide-react'
 export function OrganizationForm() {
   const [{ success, message, errors }, isPending] = useFormState(
     createOrganizationAction,
+    () => {},
   )
 
   return (
@@ -25,6 +26,17 @@ export function OrganizationForm() {
           </AlertDescription>
         </Alert>
       )}
+
+      {success === true && message && (
+        <Alert variant="success">
+          <AlertTriangle className="size-4" />
+          <AlertTitle>Success!</AlertTitle>
+          <AlertDescription>
+            <p>{message}</p>
+          </AlertDescription>
+        </Alert>
+      )}
+
       <div className="space-y-1">
         <Label htmlFor="email">Organization name</Label>
         <Input name="name" id="name" />
@@ -73,7 +85,7 @@ export function OrganizationForm() {
         </div>
       </div>
 
-      <Button className="w-full" type="submit" disabled={isPending}>
+      <Button className="w-full" type="submit">
         {isPending ? (
           <Loader2 className="size-4 animate-spin" />
         ) : (
