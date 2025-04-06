@@ -2,16 +2,16 @@ import { api } from './api-client'
 
 interface CreateOrganizationRequest {
   name: string
-  email: string
-  password: string
+  domain: string | null
+  shouldAttachUsersByDomain: boolean
 }
 
 export async function createOrganization({
-  email,
+  domain,
   name,
-  password,
+  shouldAttachUsersByDomain,
 }: CreateOrganizationRequest): Promise<void> {
-  await api.post('users', {
-    json: { email, name, password },
+  await api.post('organizations', {
+    json: { domain, name, shouldAttachUsersByDomain },
   })
 }
