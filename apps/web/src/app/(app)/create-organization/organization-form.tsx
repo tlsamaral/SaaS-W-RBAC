@@ -7,16 +7,16 @@ import { Label } from '@/components/ui/label'
 import { useFormState } from '@/hooks/use-form-state'
 import { createOrganizationAction } from './actions'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
-import { AlertTriangle, Loader2 } from 'lucide-react'
+import { AlertTriangle, CheckCircle, Loader2 } from 'lucide-react'
 
 export function OrganizationForm() {
-  const [{ success, message, errors }, isPending] = useFormState(
+  const [{ success, message, errors }, handleSubmit, isPending] = useFormState(
     createOrganizationAction,
     () => {},
   )
 
   return (
-    <form className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-4">
       {success === false && message && (
         <Alert variant="destructive">
           <AlertTriangle className="size-4" />
@@ -29,7 +29,7 @@ export function OrganizationForm() {
 
       {success === true && message && (
         <Alert variant="success">
-          <AlertTriangle className="size-4" />
+          <CheckCircle className="size-4" />
           <AlertTitle>Success!</AlertTitle>
           <AlertDescription>
             <p>{message}</p>
@@ -85,7 +85,7 @@ export function OrganizationForm() {
         </div>
       </div>
 
-      <Button className="w-full" type="submit">
+      <Button className="w-full" type="submit" disabled={isPending}>
         {isPending ? (
           <Loader2 className="size-4 animate-spin" />
         ) : (
