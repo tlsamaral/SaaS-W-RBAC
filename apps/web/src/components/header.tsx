@@ -4,6 +4,7 @@ import { OrganizationSwicther } from './organization-switcher'
 import { ability } from '@/auth/auth'
 import { ThemeSwitcher } from './theme/theme-switcher'
 import { Separator } from './ui/separator'
+import { ProjectSwitcher } from './project-switcher'
 
 export async function Header() {
   const permissions = await ability()
@@ -16,7 +17,12 @@ export async function Header() {
 
         <OrganizationSwicther />
 
-        {permissions?.can('get', 'Project') && <p>Projects</p>}
+        {permissions?.can('get', 'Project') && (
+          <>
+            <Slash className="size-3 -rotate-24 text-border" />
+            <ProjectSwitcher />
+          </>
+        )}
       </div>
 
       <div className="flex items-center gap-4">
