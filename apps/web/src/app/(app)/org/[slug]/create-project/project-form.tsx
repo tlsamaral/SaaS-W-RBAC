@@ -9,12 +9,14 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { AlertTriangle, CheckCircle, Loader2 } from 'lucide-react'
 import { Textarea } from '@/components/ui/textarea'
 import { queryClient } from '@/lib/react-query'
+import { useParams } from 'next/navigation'
 
 export function ProjectForm() {
+  const { slug: org } = useParams<{ slug: string }>()
   const [{ success, message, errors }, handleSubmit, isPending] = useFormState(
     createProjectAction,
     () => {
-      queryClient.invalidateQueries({ queryKey: ['projects'] })
+      queryClient.invalidateQueries({ queryKey: [org, 'projects'] })
     },
   )
 
