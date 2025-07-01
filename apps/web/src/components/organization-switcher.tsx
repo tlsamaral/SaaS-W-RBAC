@@ -26,7 +26,7 @@ export async function OrganizationSwicther() {
       <DropdownMenuTrigger className="flex w-[168px] items-center gap-2 rounded p-1 text-sm font-medium outline-none focus-visible:ring-2 focus-visible:ring-primary">
         {currentorganization ? (
           <>
-            <Avatar className="mr-2 size-4">
+            <Avatar className="size-4">
               {currentorganization.avatarUrl && (
                 <AvatarImage src={currentorganization.avatarUrl} />
               )}
@@ -55,7 +55,7 @@ export async function OrganizationSwicther() {
             return (
               <DropdownMenuItem key={organization.id} asChild>
                 <Link href={`/org/${organization.slug}`}>
-                  <Avatar className="mr-2 size-4">
+                  <Avatar className="size-4">
                     {organization.avatarUrl && (
                       <AvatarImage src={organization.avatarUrl} />
                     )}
