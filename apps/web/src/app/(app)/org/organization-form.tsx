@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label'
 import { useFormState } from '@/hooks/use-form-state'
 import {
   createOrganizationAction,
+  updateOrganizationAction,
   type OrganizationFormValues,
 } from './actions'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
@@ -21,10 +22,12 @@ export function OrganizationForm({
   isUpdating = false,
   initialData,
 }: OrganizationFormProps) {
-  const [{ success, message, errors }, handleSubmit, isPending] = useFormState(
-    createOrganizationAction,
-    () => {},
-  )
+  const formAction = isUpdating
+    ? updateOrganizationAction
+    : createOrganizationAction
+
+  const [{ success, message, errors }, handleSubmit, isPending] =
+    useFormState(formAction)
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -50,7 +53,7 @@ export function OrganizationForm({
 
       <div className="space-y-1">
         <Label htmlFor="email">Organization name</Label>
-        <Input name="name" id="name" />
+        <Input name="name" id="name" defaultValue={initialData?.name} />
 
         {errors?.name && (
           <p className="text-xs font-medium text-red-500 dark:text-red-400">
@@ -67,6 +70,7 @@ export function OrganizationForm({
           id="domain"
           inputMode="url"
           placeholder="example.com"
+          defaultValue={initialData?.domain}
         />
 
         {errors?.domain && (
@@ -82,6 +86,7 @@ export function OrganizationForm({
             <Checkbox
               name="shouldAttachUsersByDomain"
               id="shouldAttachUsersByDomain"
+              defaultChecked={initialData?.shouldAttachUsersByDomain}
             />
           </div>
           <label htmlFor="shouldAttachUsersByDomain" className="space-y-1">
