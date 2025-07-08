@@ -8,6 +8,7 @@ interface GetMembersResponse {
     avatarUrl: string | null
     role: Role
     email: string
+    userId: string
   }[]
 }
 
