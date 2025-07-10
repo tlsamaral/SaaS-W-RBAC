@@ -56,6 +56,16 @@ export async function Billing() {
                   {billing.projects.price} ({billing.projects.unit} each)
                 </TableCell>
               </TableRow>
+
+              <TableRow>
+                <TableCell>Amount of seats</TableCell>
+                <TableCell className="text-right">
+                  {billing.seats.amount}
+                </TableCell>
+                <TableCell className="text-right">
+                  {billing.seats.price} ({billing.seats.unit} each)
+                </TableCell>
+              </TableRow>
             </TableBody>
 
             <TableFooter>
