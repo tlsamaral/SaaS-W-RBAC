@@ -41,7 +41,7 @@ export async function Billing() {
               <TableHead className="text-right" style={{ width: 120 }}>
                 Quantity
               </TableHead>
-              <TableHead className="text-right" style={{ width: 160 }}>
+              <TableHead className="text-right" style={{ width: 200 }}>
                 Subtotal
               </TableHead>
             </TableHeader>
@@ -53,7 +53,16 @@ export async function Billing() {
                   {billing.projects.amount}
                 </TableCell>
                 <TableCell className="text-right">
-                  {billing.projects.price} ({billing.projects.unit} each)
+                  {billing.projects.price.toLocaleString('en-US', {
+                    style: 'currency',
+                    currency: 'USD',
+                  })}{' '}
+                  (
+                  {billing.projects.unit.toLocaleString('en-US', {
+                    style: 'currency',
+                    currency: 'USD',
+                  })}{' '}
+                  each)
                 </TableCell>
               </TableRow>
 
@@ -63,7 +72,16 @@ export async function Billing() {
                   {billing.seats.amount}
                 </TableCell>
                 <TableCell className="text-right">
-                  {billing.seats.price} ({billing.seats.unit} each)
+                  {billing.seats.price.toLocaleString('en-US', {
+                    style: 'currency',
+                    currency: 'USD',
+                  })}{' '}
+                  (
+                  {billing.seats.unit.toLocaleString('en-US', {
+                    style: 'currency',
+                    currency: 'USD',
+                  })}{' '}
+                  each)
                 </TableCell>
               </TableRow>
             </TableBody>
@@ -72,7 +90,12 @@ export async function Billing() {
               <TableRow>
                 <TableCell />
                 <TableCell className="text-right">Total</TableCell>
-                <TableCell className="text-right">{billing.total}</TableCell>
+                <TableCell className="text-right">
+                  {billing.total.toLocaleString('en-US', {
+                    style: 'currency',
+                    currency: 'USD',
+                  })}
+                </TableCell>
               </TableRow>
             </TableFooter>
           </Table>
