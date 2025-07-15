@@ -4,6 +4,7 @@ import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
 import { getMembers } from '@/http/get-members'
 import { getMembership } from '@/http/get-membership'
 import { getOrganization } from '@/http/get-organization'
+import { Crown } from 'lucide-react'
 
 export async function MemberList() {
   const currentOrg = await getCurrentOrg()
@@ -45,7 +46,8 @@ export async function MemberList() {
                           </span>
                         )}
                         {organization.ownerId === member.id && (
-                          <span className="text-xs text-muted-foreground">
+                          <span className="text-xs text-muted-foreground flex items-center gap-1">
+                            <Crown className="size-4" />
                             (Owner)
                           </span>
                         )}
