@@ -10,8 +10,6 @@ export async function MemberList() {
   const { membership } = await getMembership(currentOrg)
   const { members } = await getMembers(currentOrg)
   const { organization } = await getOrganization({ org: currentOrg })
-  console.log(membership)
-  console.log(organization, members)
 
   return (
     <div className="space-y-2">
