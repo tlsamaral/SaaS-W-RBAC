@@ -38,6 +38,9 @@ importers:
       '@prisma/client':
         specifier: ^6.4.1
         version: 6.4.1(prisma@6.4.1(typescript@5.7.3))(typescript@5.7.3)
+      '@saas/api':
+        specifier: 'link:'
+        version: 'link:'
       '@saas/auth':
         specifier: workspace:*
         version: link:../../packages/auth
@@ -114,6 +117,9 @@ importers:
       '@saas/env':
         specifier: workspace:*
         version: link:../../packages/env
+      '@saas/web':
+        specifier: 'link:'
+        version: 'link:'
       '@tanstack/react-query':
         specifier: ^5.72.0
         version: 5.72.0(react@19.0.0)

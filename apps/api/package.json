@@ -5,6 +5,7 @@
     "dev": "pnpm env:load tsx watch src/http/server.ts",
     "db:migrate": "pnpm env:load prisma migrate dev",
     "db:studio": "pnpm env:load prisma studio",
+    "db:seed": "pnpm env:load prisma db seed",
     "env:load": "dotenv -e ../../.env --"
   },
   "prisma": {
@@ -25,6 +26,7 @@
     "@fastify/swagger": "^9.4.2",
     "@fastify/swagger-ui": "^5.2.2",
     "@prisma/client": "^6.4.1",
+    "@saas/api": "link:",
     "@saas/auth": "workspace:*",
     "@saas/env": "workspace:*",
     "bcryptjs": "^3.0.2",
