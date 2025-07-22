@@ -1,9 +1,8 @@
 import { ability, getCurrentOrg } from '@/auth/auth'
-import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
 import { getInvites } from '@/http/get-invites'
-import { XOctagon } from 'lucide-react'
+import { RevokeInviteButton } from './revoke-invite-button'
 
 export async function Invites() {
   const currentOrg = await getCurrentOrg()
@@ -41,16 +40,21 @@ export async function Invites() {
                     <TableCell className="py-2.5">
                       <div className="flex justify-end">
                         {permissions.can('delete', 'Invite') && (
-                          <Button variant="destructive">
-                            <XOctagon className="size-4" />
-                            Revoke Invite
-                          </Button>
+                          <RevokeInviteButton inviteId={invite.id} />
                         )}
                       </div>
                     </TableCell>
                   </TableRow>
                 )
               })}
+
+              {invites.length === 0 && (
+                <TableRow>
+                  <TableCell className="h-24 text-center">
+                    No invites found.
+                  </TableCell>
+                </TableRow>
+              )}
             </TableBody>
           </Table>
         </div>
