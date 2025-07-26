@@ -6,8 +6,9 @@ import { acceptInvite } from '@/http/accept-invite'
 import { getInvite } from '@/http/get-invite'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
-import { CheckCircle, LogIn } from 'lucide-react'
+import { CheckCircle, LayoutDashboard, LogIn, LogOut } from 'lucide-react'
 import { cookies } from 'next/headers'
+import Link from 'next/link'
 import { redirect } from 'next/navigation'
 
 dayjs.extend(relativeTime)
@@ -90,6 +91,44 @@ export default async function InvitePage({ params }: InvitePageProps) {
               </Button>
             </form>
           )}
+
+          {isUserAuthenticated &&
+            !userIsAuthenticatedWithSameEmailFromInvite && (
+              <div className="space-y-4">
+                <p className="text-balance text-center text-sm leading-relaxed text-muted-foreground">
+                  This invite was sent to{' '}
+                  <span className="font-medium text-foreground">
+                    {invite.email}
+                  </span>{' '}
+                  but you are signed in with{' '}
+                  <span className="font-medium text-foreground">
+                    {currentUserEmail}
+                  </span>
+                  .
+                </p>
+
+                <div className="space-y-2">
+                  <Button className="w-full" variant="secondary" asChild>
+                    <a href="/api/auth/sign-out">
+                      <LogOut className="size-4" />
+                      Sign out from {currentUserEmail}
+                    </a>
+                  </Button>
+
+                  <Button
+                    type="submit"
+                    variant="outline"
+                    className="w-full"
+                    asChild
+                  >
+                    <Link href="/">
+                      <LayoutDashboard className="size-4" />
+                      Back to Dashboard
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+            )}
         </div>
       </div>
     </div>
