@@ -10,6 +10,10 @@ import {
 } from '@/components/ui/card'
 import { getProjects } from '@/http/get-projects'
 import { ArrowRight } from 'lucide-react'
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+
+dayjs.extend(relativeTime)
 
 export async function ProjectList() {
   const org = await getCurrentOrg()
@@ -29,16 +33,17 @@ export async function ProjectList() {
 
             <CardFooter className="flex items-center gap-1.5">
               <Avatar className="size-4">
-                {project.avatarUrl && <AvatarImage src={project.avatarUrl} />}
+                {project.owner.avatarUrl && (
+                  <AvatarImage src={project.owner.avatarUrl} />
+                )}
                 <AvatarFallback />
               </Avatar>
 
               <span className="text-xs text-muted-foreground">
-                Created by{' '}
                 <span className="font-medium text-foreground">
                   {project.owner.name}
                 </span>{' '}
-                a day ago
+                {dayjs(project.createdAt).fromNow()}
               </span>
 
               <Button size="xs" variant="outline" className="ml-auto">
